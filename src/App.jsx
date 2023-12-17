@@ -10,7 +10,7 @@ function App() {
   useEffect(() => {
     const carregarLivros = async () => {
       try {
-        const response = await fetch('https://serverapi.jhonnatasribeir.repl.co/livros');
+        const response = await fetch('https://serverapi.jhonnatasribeir.repl.co/livros', { mode: 'no-cors' });
 
         if (!response.ok) {
           throw new Error(`Erro: ${response.status} - ${response.statusText}`);
