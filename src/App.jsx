@@ -10,7 +10,7 @@ function App() {
   useEffect(() => {
     const carregarLivros = async () => {
       try {
-        const response = await fetch('https://serverapi.jhonnatasribeir.repl.co/livros', { mode: 'no-cors' });
+        const response = await fetch('https://serverapi.jhonnatasribeir.repl.co/livros');
 
         if (!response.ok) {
           throw new Error(`Erro: ${response.status} - ${response.statusText}`);
@@ -24,7 +24,7 @@ function App() {
     };
 
     carregarLivros();
-  }, [livros]); // O segundo argumento vazio garante que o useEffect só é executado uma vez, sem dependências
+  }, []); // Remova [livros] como dependência
 
   const cadastrarLivro = async () => {
     try {
@@ -40,17 +40,14 @@ function App() {
         throw new Error(`Erro: ${response.status} - ${response.statusText}`);
       }
 
-      // Recarrega a lista de livros após adicionar um novo livro
       const data = await response.json();
       setLivros((livros) => [...livros, data]);
 
-      // Limpa os campos do formulário após cadastrar o livro
       setTitulo('');
       setAutor('');
     } catch (error) {
-      console.error('Erro ao cadastrar livro:', error);
+      console.error('Erro ao cadastrar livro:', error.message);
     }
-
   };
 
   const deletarLivro = async (livroId) => {
@@ -63,10 +60,9 @@ function App() {
         throw new Error(`Erro: ${response.status} - ${response.statusText}`);
       }
 
-      // Atualiza o estado dos livros após deletar um livro
       setLivros((livros) => livros.filter((livro) => livro.id !== livroId));
     } catch (error) {
-      console.error('Erro ao deletar livro:', error);
+      console.error('Erro ao deletar livro:', error.message);
     }
   };
 
