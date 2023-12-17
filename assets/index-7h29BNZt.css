@@ -1,0 +1,1 @@
+.todosOsLivros{display:flex;flex-wrap:wrap;justify-content:center;gap:20px}.livro{width:200px;border:1px solid black;padding:10px}.livro h3{font-size:20px;margin:0;padding:5px}.livro .titulo{background-color:#ccc;padding:5px;border-radius:4px}
